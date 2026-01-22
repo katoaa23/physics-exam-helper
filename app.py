@@ -241,12 +241,12 @@ formula_definitions = {
     # ========== РАБОТА, МОЩНОСТЬ, ЭНЕРГИЯ ==========
     'Работа': {
         'formula': 'A = F × s × cos(α)',
-        'parameters': ['F', 's', 'alpha'],  # ← alpha в градусах!
-        'calculation': 'F * s * cos(radians(alpha))',  # ← radians!
+        'parameters': ['F', 's', 'alpha'],
+        'calculation': 'F * s * cos(radians(alpha))',
         'units': {'F': 'Н', 's': 'м', 'alpha': '°', 'result': 'Дж'},
         'note': 'α - угол между силой и перемещением'
     },
-    
+        
     'Мощность': {
         'formula': 'P = A / t',
         'parameters': ['A', 't'],
@@ -343,12 +343,12 @@ formula_definitions = {
     
     # ========== МАГНЕТИЗМ ==========
     'Сила Ампера': {
-    'formula': 'F = B × I × L × sin(α)',
-    'parameters': ['B', 'I', 'L', 'alpha'],
-    'calculation': 'B * I * L * sin(radians(alpha))',
-    'units': {'B': 'Тл', 'I': 'А', 'L': 'м', 'alpha': '°', 'result': 'Н'},
-    'note': 'α - угол между проводником и магнитным полем'
-},
+        'formula': 'F = B × I × L × sin(α)',
+        'parameters': ['B', 'I', 'L', 'alpha'],
+        'calculation': 'B * I * L * sin(radians(alpha))',
+        'units': {'B': 'Тл', 'I': 'А', 'L': 'м', 'alpha': '°', 'result': 'Н'},
+        'note': 'α - угол между проводником и магнитным полем'
+    },
     
     'ЭДС индукции': {
         'formula': 'ε = -ΔΦ / Δt',
@@ -368,10 +368,13 @@ formula_definitions = {
     # ========== ОПТИКА ==========
     'Закон преломления': {
         'formula': 'n₁ × sin(α) = n₂ × sin(β)',
-        'parameters': ['n1', 'alpha', 'n2'],  # ← Находим sin(beta) или beta
-        'calculation': 'asin((n1 * sin(radians(alpha))) / n2)',  # ← Находим угол beta в радианах
+        'parameters': ['n1', 'alpha', 'n2'],
+        'calculation': '''
+        sin_ratio = (n1 * sin(radians(alpha))) / n2;
+        degrees(asin(sin_ratio)) if abs(sin_ratio) <= 1 else float("nan")
+    ''',
         'units': {'n1': '', 'alpha': '°', 'n2': '', 'result': '°'},
-        'note': 'Вычисляется угол β во второй среде',
+        'note': 'β = arcsin(n₁×sin(α)/n₂) - угол преломления. Если >1 - полное отражение'
     },
     
     'Формула тонкой линзы': {
