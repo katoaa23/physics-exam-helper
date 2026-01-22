@@ -367,15 +367,12 @@ formula_definitions = {
     
     # ========== ОПТИКА ==========
     'Закон преломления': {
-        'formula': 'n₁ × sin(α) = n₂ × sin(β)',
-        'parameters': ['n1', 'alpha', 'n2'],
-        'calculation': '''
-        sin_ratio = (n1 * sin(radians(alpha))) / n2;
-        degrees(asin(sin_ratio)) if abs(sin_ratio) <= 1 else float("nan")
-    ''',
-        'units': {'n1': '', 'alpha': '°', 'n2': '', 'result': '°'},
-        'note': 'β = arcsin(n₁×sin(α)/n₂) - угол преломления. Если >1 - полное отражение'
-    },
+    'formula': 'n₁ × sin(α) = n₂ × sin(β)',
+    'parameters': ['n1', 'sin_a', 'n2', 'sin_b'],  # ← 4 параметра!
+    'calculation': 'n1 * sin_a / (n2 * sin_b)',  # ← Проверяем равенство
+    'units': {'n1': '', 'sin_a': '', 'n2': '', 'sin_b': '', 'result': ''},
+    'note': 'Проверяет равенство: n₁·sinα должна равняться n₂·sinβ. Результат = 1 если равенство выполняется'
+},
     
     'Формула тонкой линзы': {
         'formula': '1/F = 1/d + 1/f',
