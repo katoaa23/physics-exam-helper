@@ -241,9 +241,9 @@ formula_definitions = {
     # ========== РАБОТА, МОЩНОСТЬ, ЭНЕРГИЯ ==========
     'Работа': {
         'formula': 'A = F × s × cos(α)',
-        'parameters': ['F', 's', 'alpha'],
+        'parameters': ['F', 's', 'cos_alpha'],
         'calculation': 'F * s * cos(radians(alpha))',
-        'units': {'F': 'Н', 's': 'м', 'alpha': '°', 'result': 'Дж'},
+        'units': {'F': 'Н', 's': 'м', 'cos_alpha': '°', 'result': 'Дж'},
         'note': 'α - угол между силой и перемещением'
     },
         
