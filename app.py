@@ -344,10 +344,10 @@ formula_definitions = {
     # ========== МАГНЕТИЗМ ==========
     'Сила Ампера': {
     'formula': 'F = B × I × L × sin(α)',
-    'parameters': ['B', 'I', 'L', 'alpha'],  # ← alpha в градусах!
-    'calculation': 'B * I * L * sin(radians(alpha))',  # ← radians!
+    'parameters': ['B', 'I', 'L', 'alpha'],
+    'calculation': 'B * I * L * sin(radians(alpha))',
     'units': {'B': 'Тл', 'I': 'А', 'L': 'м', 'alpha': '°', 'result': 'Н'},
-    'note': 'α - угол между проводником и вектором магнитной индукции'
+    'note': 'α - угол между проводником и магнитным полем'
 },
     
     'ЭДС индукции': {
