@@ -241,9 +241,10 @@ formula_definitions = {
     # ========== РАБОТА, МОЩНОСТЬ, ЭНЕРГИЯ ==========
     'Работа': {
         'formula': 'A = F × s × cos(α)',
-        'parameters': ['F', 's', 'cos_alpha'],
-        'calculation': 'F * s * cos_alpha',
-        'units': {'F': 'Н', 's': 'м', 'cos_alpha': '', 'result': 'Дж'}
+        'parameters': ['F', 's', 'alpha'],  # ← alpha в градусах!
+        'calculation': 'F * s * cos(radians(alpha))',  # ← radians!
+        'units': {'F': 'Н', 's': 'м', 'alpha': '°', 'result': 'Дж'},
+        'note': 'α - угол между силой и перемещением'
     },
     
     'Мощность': {
@@ -342,11 +343,12 @@ formula_definitions = {
     
     # ========== МАГНЕТИЗМ ==========
     'Сила Ампера': {
-        'formula': 'F = B × I × L × sin(α)',
-        'parameters': ['B', 'I', 'L', 'sin_alpha'],
-        'calculation': 'B * I * L * sin_alpha',
-        'units': {'B': 'Тл', 'I': 'А', 'L': 'м', 'sin_alpha': '', 'result': 'Н'}
-    },
+    'formula': 'F = B × I × L × sin(α)',
+    'parameters': ['B', 'I', 'L', 'alpha'],  # ← alpha в градусах!
+    'calculation': 'B * I * L * sin(radians(alpha))',  # ← radians!
+    'units': {'B': 'Тл', 'I': 'А', 'L': 'м', 'alpha': '°', 'result': 'Н'},
+    'note': 'α - угол между проводником и вектором магнитной индукции'
+},
     
     'ЭДС индукции': {
         'formula': 'ε = -ΔΦ / Δt',
@@ -357,17 +359,19 @@ formula_definitions = {
     
     'Сила Лоренца': {
         'formula': 'F = |q| × v × B × sin(α)',
-        'parameters': ['q', 'v', 'B', 'sin_alpha'],
-        'calculation': 'abs(q) * v * B * sin_alpha',
-        'units': {'q': 'Кл', 'v': 'м/с', 'B': 'Тл', 'sin_alpha': '', 'result': 'Н'}
+        'parameters': ['q', 'v', 'B', 'alpha'],  # ← alpha в градусах!
+        'calculation': 'abs(q) * v * B * sin(radians(alpha))',  # ← radians!
+        'units': {'q': 'Кл', 'v': 'м/с', 'B': 'Тл', 'alpha': '°', 'result': 'Н'},
+        'note': 'α - угол между векторами скорости и магнитной индукции'
     },
     
     # ========== ОПТИКА ==========
     'Закон преломления': {
         'formula': 'n₁ × sin(α) = n₂ × sin(β)',
-        'parameters': ['n1', 'sin_a', 'n2', 'sin_b'],
-        'calculation': 'n1 * sin_a / sin_b',
-        'units': {'n1': '', 'sin_a': '', 'n2': '', 'sin_b': '', 'result': ''}
+        'parameters': ['n1', 'alpha', 'n2'],  # ← Находим sin(beta) или beta
+        'calculation': 'asin((n1 * sin(radians(alpha))) / n2)',  # ← Находим угол beta в радианах
+        'units': {'n1': '', 'alpha': '°', 'n2': '', 'result': '°'},
+        'note': 'Вычисляется угол β во второй среде',
     },
     
     'Формула тонкой линзы': {
